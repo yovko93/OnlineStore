@@ -4,9 +4,8 @@ namespace OnlineStore.Data.Models
     using System;
     using System.Collections.Generic;
 
-    using OnlineStore.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using OnlineStore.Data.Common.Models;
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {

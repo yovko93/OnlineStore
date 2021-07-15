@@ -2,9 +2,8 @@
 {
     using System.Diagnostics;
 
-    using OnlineStore.Web.ViewModels;
-
     using Microsoft.AspNetCore.Mvc;
+    using OnlineStore.Web.ViewModels;
 
     public class HomeController : BaseController
     {

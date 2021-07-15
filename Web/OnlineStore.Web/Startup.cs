@@ -2,6 +2,14 @@
 {
     using System.Reflection;
 
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
     using OnlineStore.Data;
     using OnlineStore.Data.Common;
     using OnlineStore.Data.Common.Repositories;
@@ -12,15 +20,6 @@
     using OnlineStore.Services.Mapping;
     using OnlineStore.Services.Messaging;
     using OnlineStore.Web.ViewModels;
-
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Hosting;
 
     public class Startup
     {
