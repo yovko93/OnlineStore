@@ -9,7 +9,6 @@
     {
         public Product()
         {
-            this.CategoryProducts = new HashSet<CategoryProduct>();
             this.Comments = new HashSet<Comment>();
             this.UsersWishList = new HashSet<UserProductWishList>();
         }
@@ -37,7 +36,13 @@
 
         public ApplicationUser User { get; set; }
 
-        public virtual IEnumerable<CategoryProduct> CategoryProducts { get; set; }
+        public int CategoryId { get; set; }
+
+        public Category Category { get; set; }
+
+        public int SubCategoryId { get; set; }
+
+        public SubCategory SubCategory { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
 

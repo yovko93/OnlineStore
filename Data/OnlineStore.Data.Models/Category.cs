@@ -9,7 +9,8 @@
     {
         public Category()
         {
-            this.CategoryProducts = new HashSet<CategoryProduct>();
+            this.Products = new HashSet<Product>();
+            this.SubCategories = new HashSet<SubCategory>();
         }
 
         [Required]
@@ -20,6 +21,8 @@
         [MaxLength(100)]
         public string Description { get; set; }
 
-        public virtual IEnumerable<CategoryProduct> CategoryProducts { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
+
+        public ICollection<SubCategory> SubCategories { get; set; }
     }
 }

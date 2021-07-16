@@ -15,6 +15,10 @@ namespace OnlineStore.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+
+            this.Products = new HashSet<Product>();
+            this.Comments = new HashSet<Comment>();
+            this.WishList = new HashSet<UserProductWishList>();
         }
 
         // Audit info
@@ -32,5 +36,11 @@ namespace OnlineStore.Data.Models
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+
+        public ICollection<Product> Products { get; set; }
+
+        public ICollection<Comment> Comments { get; set; }
+
+        public ICollection<UserProductWishList> WishList { get; set; }
     }
 }

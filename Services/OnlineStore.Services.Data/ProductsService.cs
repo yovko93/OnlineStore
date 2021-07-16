@@ -36,6 +36,11 @@
             await this.productsRepository.SaveChangesAsync();
         }
 
+        public void Delete(int productId)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<ProductViewModel> GetAll()
         {
             var products = this.productsRepository
@@ -52,6 +57,11 @@
                 .ToList();
 
             return products;
+        }
+
+        public ProductViewModel GetById(int productId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

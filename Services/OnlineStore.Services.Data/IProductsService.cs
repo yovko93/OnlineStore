@@ -10,5 +10,9 @@
         Task CreateAsync(CreateProductFormModel productModel);
 
         IEnumerable<ProductViewModel> GetAll();
+
+        ProductViewModel GetById(int productId);
+
+        void Delete(int productId);
     }
 }

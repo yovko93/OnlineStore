@@ -29,11 +29,13 @@
 
         public DbSet<Category> Categories { get; set; }
 
-        public DbSet<CategoryProduct> CategoryProducts { get; set; }
+        public DbSet<SubCategory> SubCategories { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
 
         public DbSet<Order> Orders { get; set; }
+
+        public DbSet<UserProductWishList> UserProductWishLists { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 
