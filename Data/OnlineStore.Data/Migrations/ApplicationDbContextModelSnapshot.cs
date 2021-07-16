@@ -257,9 +257,7 @@ namespace OnlineStore.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -404,7 +402,7 @@ namespace OnlineStore.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubCategoryId")
+                    b.Property<int?>("SubCategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -608,9 +606,7 @@ namespace OnlineStore.Data.Migrations
 
                     b.HasOne("OnlineStore.Data.Models.SubCategory", "SubCategory")
                         .WithMany("Products")
-                        .HasForeignKey("SubCategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("SubCategoryId");
 
                     b.HasOne("OnlineStore.Data.Models.ApplicationUser", "User")
                         .WithMany("Products")

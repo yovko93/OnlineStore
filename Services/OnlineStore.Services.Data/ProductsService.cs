@@ -30,6 +30,8 @@
                 ImageUrl = productModel.ImageUrl,
                 Gender = Enum.Parse<Gender>(productModel.Gender, true),
                 UserId = productModel.UserId,
+                CategoryId = productModel.CategoryId,
+                // SubCategoryId = productModel.SubCategoryId,
             };
 
             await this.productsRepository.AddAsync(product);

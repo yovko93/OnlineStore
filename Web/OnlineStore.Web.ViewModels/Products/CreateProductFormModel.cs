@@ -31,6 +31,11 @@
         [Display(Name = "Category")]
         public int CategoryId { get; set; }
 
+        //[Display(Name = "SubCategory")]
+        //public int? SubCategoryId { get; set; }
+
         public IEnumerable<ProductCategoryViewModel> Categories { get; set; }
+
+        public IEnumerable<ProductCategoryViewModel> SubCategories { get; set; }
     }
 }
