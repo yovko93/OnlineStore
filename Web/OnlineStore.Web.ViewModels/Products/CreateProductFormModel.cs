@@ -6,7 +6,7 @@
     public class CreateProductFormModel
     {
         [Required]
-        [StringLength(30, MinimumLength = 5)]
+        [StringLength(30, MinimumLength = 3)]
         public string Title { get; set; }
 
         public decimal Price { get; set; }
@@ -36,6 +36,6 @@
 
         public IEnumerable<ProductCategoryViewModel> Categories { get; set; }
 
-        public IEnumerable<ProductCategoryViewModel> SubCategories { get; set; }
+        //public IEnumerable<ProductSubCategoryViewModel> SubCategories { get; set; }
     }
 }
