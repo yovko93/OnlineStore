@@ -1,11 +1,56 @@
 ﻿namespace OnlineStore.Services.Data
 {
+    using System;
+    using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
+    using OnlineStore.Data.Common.Repositories;
+    using OnlineStore.Data.Models;
+    using OnlineStore.Web.ViewModels.Categories;
 
     public class CategoriesService : ICategoriesService
     {
-        //Task<bool> CreateAsync(CategoryServiceModel categoryServiceModel);
+        private readonly IDeletableEntityRepository<Category> categoryRepository;
 
-        //IQueryable<CategoryServiceModel> GetAll();
+        public CategoriesService(IDeletableEntityRepository<Category> categoryRepository)
+        {
+            this.categoryRepository = categoryRepository;
+        }
+
+        public async Task<CategoryServiceModel> GetByIdAsync(int id)
+        {
+            if (!await this.ContainsByIdAsync(id))
+            {
+                // TODO: Exception Constants
+                throw new ArgumentException("Category with this Id doesn't exist!");
+            }
+
+            var category = await this.categoryRepository
+                .AllAsNoTracking()
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            var categoryServiceModel = new CategoryServiceModel
+            {
+                Id = category.Id,
+                Name = category.Name,
+            };
+
+            return categoryServiceModel;
+        }
+
+        public IQueryable<CategoryServiceModel> GetAll()
+        {
+            return this.categoryRepository.AllAsNoTracking()
+                .Select(c => new CategoryServiceModel
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                });
+        }
+
+        public async Task<bool> ContainsByIdAsync(int id)
+            => await this.categoryRepository
+                .AllAsNoTracking()
+                .FirstOrDefaultAsync(c => c.Id == id) != null;
     }
 }

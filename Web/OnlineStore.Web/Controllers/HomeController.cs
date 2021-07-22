@@ -2,6 +2,7 @@
 {
     using System.Diagnostics;
     using System.Linq;
+
     using Microsoft.AspNetCore.Mvc;
     using OnlineStore.Data;
     using OnlineStore.Web.ViewModels;
@@ -26,7 +27,7 @@
                 .Select(p => new ProductIndexViewModel
                 {
                     Id = p.Id,
-                    Title = p.Title,
+                    Name = p.Name,
                     Price = p.Price,
                     ImageUrl = p.ImageUrl,
                 })

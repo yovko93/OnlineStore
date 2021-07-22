@@ -1,0 +1,108 @@
+﻿@model DetailsViewModel
+@{
+    ViewData["Title"] = "Product Details";
+}
+
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
+            <div class="col-first">
+                <h1>Single Ad Page</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="product-quick-view">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="@Model.ImageUrl" alt="image">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="quick-view-content element-with-date">
+
+                    <div class="top">
+                        <h3 class="head">@Model.Name</h3>
+                        <div class="price d-flex align-items-center"><span class="lnr lnr-tag"></span> <span class="ml-10">$@Model.Price</span></div>
+
+                        <div class="category">Category: <a href="/Advertisement/GetByCategory?categoryId=@Model.CategoryId&page=1">@Model.CategoryName</a></div>
+                        <div class="available">SubCategory: <a href="/Advertisement/GetByCategory?categoryId=@Model.SubCategoryId&page=1">@Model.SubCategoryName</a></div>
+                        <div class="available">Size: <span>@Model.Size</span></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-100">
+    <div class="details-tab-navigation d-flex justify-content-center mt-30">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li>
+                <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-expanded="true">Description</a>
+            </li>
+            <li>
+                <a class="nav-link" id="seller-info-tab" data-toggle="tab" href="#sellerInfo" role="tab" aria-controls="sellerInfo" aria-expanded="true">Seller Info</a>
+            </li>
+            <li>
+                <input id="adId" type="text" value="@Model.Id" style="display: none" />
+                <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" onclick="fetchComments(comments, adId)">Comments</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content show active" id="myTabContent">
+        <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description">
+            <div class="description">
+                <p>@Model.Description</p>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="sellerInfo" role="tabpanel" aria-labelledby="sellerInfo">
+            <div class="description">
+                <h3 class="text-center margin-bottom-2rem"><a href="/User/Profile?id=@Model.UserId&orderBy=dateDesc&page=1"><i class="fas fa-user"></i> @Model.Username</a></h3>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments">
+            <div class="review-wrapper">
+                <div class="row">
+                    <div class="col-xl-6">
+                        <div class="total-comment">
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="add-review">
+                            <form asp-controller="Comment" asp-action="Post" method="post">
+                                <h3>Post a comment</h3>
+                                <input type="text" name="ProductId" value="@Model.Id" style="display: none" />
+                                <textarea placeholder="Message" id="commentText" name="Text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'" required class="common-textarea"></textarea>
+                                <button class="view-btn color-2 mt-2" type="submit"><span>Comment Now</span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/comments.js" asp-append-version="true"></script>
+}

@@ -1,6 +1,6 @@
-﻿namespace OnlineStore.Web.ViewModels.Products
+﻿namespace OnlineStore.Web.ViewModels.Categories
 {
-    public class ProductCategoryViewModel
+    public class CategoryViewModel
     {
         public int Id { get; set; }
 

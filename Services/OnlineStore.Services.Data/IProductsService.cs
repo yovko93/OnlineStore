@@ -9,10 +9,19 @@
     {
         Task CreateAsync(CreateProductFormModel productModel);
 
-        IEnumerable<ProductViewModel> GetAll();
+        ProductQueryServiceModel All(
+            string name,
+            string searchTerm,
+            ProductSorting sorting,
+            int currentPage,
+            int productsPerPage);
 
-        ProductViewModel GetById(int productId);
+        Task<ProductViewServiceModel> GetByIdAsync(int id);
 
         void Delete(int productId);
+
+        IEnumerable<string> AllProductNames();
+
+        bool Contains(int productId);
     }
 }

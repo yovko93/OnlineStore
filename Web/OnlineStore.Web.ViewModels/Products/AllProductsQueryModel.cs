@@ -7,7 +7,7 @@
     {
         public const int ProductsPerPage = 3;
 
-        public string Title { get; set; }
+        public string Name { get; set; }
 
         [Display(Name = "Search by text")]
         public string SearchTerm { get; set; }
@@ -18,8 +18,8 @@
 
         public int TotalProducts { get; set; }
 
-        public IEnumerable<string> Brands { get; set; }
+        public IEnumerable<string> Names { get; set; }
 
-        public IEnumerable<ProductListingViewModel> Products { get; set; }
+        public IEnumerable<ProductServiceModel> Products { get; set; }
     }
 }

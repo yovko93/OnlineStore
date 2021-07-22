@@ -3,12 +3,11 @@
     using System;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Mvc;
     using OnlineStore.Data.Common.Repositories;
     using OnlineStore.Data.Models;
     using OnlineStore.Services.Data;
     using OnlineStore.Web.ViewModels.Settings;
-
-    using Microsoft.AspNetCore.Mvc;
 
     public class SettingsController : BaseController
     {
