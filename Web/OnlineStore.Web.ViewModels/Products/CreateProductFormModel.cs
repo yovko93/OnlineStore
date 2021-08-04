@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using OnlineStore.Web.ViewModels.Categories;
+    using OnlineStore.Web.ViewModels.SubCategories;
 
     public class CreateProductFormModel
     {
@@ -40,8 +41,8 @@
         [Display(Name = "SubCategory")]
         public int SubCategoryId { get; set; }
 
-        public IEnumerable<CategoryViewModel> Categories { get; set; }
+        public IEnumerable<CategoryServiceModel> Categories { get; set; }
 
-        public IEnumerable<SubCategoryViewModel> SubCategories { get; set; }
+        public IEnumerable<SubCategoryServiceModel> SubCategories { get; set; }
     }
 }

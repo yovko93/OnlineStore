@@ -66,6 +66,7 @@
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IProductsService, ProductsService>();
             services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<ISubCategoriesService, SubCategoriesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

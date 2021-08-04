@@ -73,9 +73,9 @@
     {
         <div class="col-md-4">
             <div class="card mb-3">
-                <img class="card-img-top" src="@product.ImageUrl" alt="@product.Name @product.Price (@product.Category)">
+                <img class="card-img-top" src="@product.ImageUrl" alt="@product.Name (@product.Category)">
                 <div class="card-body text-center">
-                    <h5 class="card-title text-center">@product.Name @product.Price (@product.Category)</h5>
+                    <h5 class="card-title text-center">@product.Name @product.Price$ (@product.Category)</h5>
                     <a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id" class="btn btn-primary">View More</a>
                 </div>
             </div>

@@ -7,7 +7,7 @@
     <div class="container">
         <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
             <div class="col-first">
-                <h1>Single Ad Page</h1>
+                <h1>Single Product Page</h1>
             </div>
         </div>
     </div>
@@ -41,8 +41,8 @@
                         <h3 class="head">@Model.Name</h3>
                         <div class="price d-flex align-items-center"><span class="lnr lnr-tag"></span> <span class="ml-10">$@Model.Price</span></div>
 
-                        <div class="category">Category: <a href="/Advertisement/GetByCategory?categoryId=@Model.CategoryId&page=1">@Model.CategoryName</a></div>
-                        <div class="available">SubCategory: <a href="/Advertisement/GetByCategory?categoryId=@Model.SubCategoryId&page=1">@Model.SubCategoryName</a></div>
+                        <div class="category">Category: <a href="/Product/GetByCategory?categoryId=@Model.CategoryId&page=1">@Model.CategoryName</a></div>
+                        <div class="available">SubCategory: <a href="/Product/GetByCategory?categoryId=@Model.SubCategoryId&page=1">@Model.SubCategoryName</a></div>
                         <div class="available">Size: <span>@Model.Size</span></div>
                     </div>
 

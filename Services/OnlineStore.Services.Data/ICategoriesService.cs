@@ -1,6 +1,6 @@
 ﻿namespace OnlineStore.Services.Data
 {
-    using System.Linq;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using OnlineStore.Web.ViewModels.Categories;
@@ -11,6 +11,6 @@
 
         Task<CategoryServiceModel> GetByIdAsync(int id);
 
-        IQueryable<CategoryServiceModel> GetAll();
+        IEnumerable<CategoryServiceModel> GetAll();
     }
 }

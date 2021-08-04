@@ -14,22 +14,26 @@
     using OnlineStore.Services.Data;
     using OnlineStore.Web.ViewModels.Categories;
     using OnlineStore.Web.ViewModels.Products;
+    using OnlineStore.Web.ViewModels.SubCategories;
 
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext data;
         private readonly IProductsService productsService;
         private readonly ICategoriesService categoriesService;
+        private readonly ISubCategoriesService subCategoriesService;
         private readonly UserManager<ApplicationUser> userManager;
 
         public ProductsController(
             ApplicationDbContext data,
             IProductsService productsService,
             ICategoriesService categoriesService,
+            ISubCategoriesService subCategoriesService,
             UserManager<ApplicationUser> userManager)
         {
             this.productsService = productsService;
             this.categoriesService = categoriesService;
+            this.subCategoriesService = subCategoriesService;
             this.userManager = userManager;
             this.data = data;
         }
@@ -37,8 +41,8 @@
         [Authorize]
         public IActionResult Create() => this.View(new CreateProductFormModel
         {
-            Categories = this.GetProductCategories(),
-            SubCategories = this.GetProductSubCategories(),
+            Categories = this.categoriesService.GetAll(),
+            SubCategories = this.subCategoriesService.GetAll(),
         });
 
         [Authorize]
@@ -57,10 +61,9 @@
 
             if (!this.ModelState.IsValid)
             {
-                productModel.Categories = this.GetProductCategories();
+                productModel.Categories = this.categoriesService.GetAll();
 
-                productModel.SubCategories =
-                    this.GetProductSubCategories();
+                productModel.SubCategories = this.subCategoriesService.GetAll();
 
                 return this.Redirect("/Products/Create");
             }
@@ -110,7 +113,10 @@
             //    return this.Redirect("/");
             //}
 
-            var category = await this.categoriesService.GetByIdAsync(product.Id);
+            var category = await this.categoriesService.GetByIdAsync(product.CategoryId);
+
+            var subCategory = await this.subCategoriesService
+                .GetByIdAsync(product.SubCategoryId);
 
             var viewModel = new DetailsViewModel()
             {
@@ -123,10 +129,10 @@
                 Size = product.Size,
                 ImageUrl = product.ImageUrl,
                 UserId = product.UserId,
-                CategoryId = product.CategoryId,
+                CategoryId = category.Id,
                 CategoryName = category.Name,
-                SubCategoryName = null,
-                SubCategoryId = product.SubCategoryId,
+                SubCategoryId = subCategory.Id,
+                SubCategoryName = subCategory.Name,
             };
 
             this.ViewData["loggedUserId"] =
@@ -135,6 +141,7 @@
             return this.View(viewModel);
         }
 
+        // TODO: remove
         private IEnumerable<CategoryViewModel> GetProductCategories()
         {
             return this.data
@@ -148,6 +155,7 @@
                 .ToList();
         }
 
+        // TODO: remove
         private IEnumerable<SubCategoryViewModel> GetProductSubCategories()
         {
             return this.data

@@ -1,4 +1,4 @@
-﻿namespace OnlineStore.Web.ViewModels.Categories
+﻿namespace OnlineStore.Web.ViewModels.SubCategories
 {
     public class SubCategoryViewModel
     {

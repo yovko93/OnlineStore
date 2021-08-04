@@ -1,8 +1,10 @@
 ﻿namespace OnlineStore.Services.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using Microsoft.EntityFrameworkCore;
     using OnlineStore.Data.Common.Repositories;
     using OnlineStore.Data.Models;
@@ -38,14 +40,16 @@
             return categoryServiceModel;
         }
 
-        public IQueryable<CategoryServiceModel> GetAll()
+        public IEnumerable<CategoryServiceModel> GetAll()
         {
-            return this.categoryRepository.AllAsNoTracking()
+            return this.categoryRepository
+                .AllAsNoTracking()
                 .Select(c => new CategoryServiceModel
                 {
                     Id = c.Id,
                     Name = c.Name,
-                });
+                })
+                .ToList();
         }
 
         public async Task<bool> ContainsByIdAsync(int id)
