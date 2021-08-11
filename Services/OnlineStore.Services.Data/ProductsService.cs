@@ -47,7 +47,7 @@
             await this.productsRepository.SaveChangesAsync();
         }
 
-        public void Delete(int productId)
+        public async Task DeleteById(int productId)
         {
             throw new NotImplementedException();
         }

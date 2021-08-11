@@ -16,6 +16,7 @@
     using OnlineStore.Web.ViewModels.Products;
     using OnlineStore.Web.ViewModels.SubCategories;
 
+    [AutoValidateAntiforgeryToken]
     public class ProductsController : Controller
     {
         private readonly ApplicationDbContext data;
@@ -41,35 +42,35 @@
         [Authorize]
         public IActionResult Create() => this.View(new CreateProductFormModel
         {
-            Categories = this.categoriesService.GetAll(),
-            SubCategories = this.subCategoriesService.GetAll(),
+        //    Categories = this.categoriesService.GetAll(),
+        //    SubCategories = this.subCategoriesService.GetAll(),
         });
 
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(CreateProductFormModel productModel)
         {
-            if (!this.data.Categories.Any(c => c.Id == productModel.CategoryId))
-            {
-                this.ModelState.AddModelError(nameof(productModel.CategoryId), "Category does not exist.");
-            }
+            //if (!this.data.Categories.Any(c => c.Id == productModel.CategoryId))
+            //{
+            //    this.ModelState.AddModelError(nameof(productModel.CategoryId), "Category does not exist.");
+            //}
 
-            if (!this.data.SubCategories.Any(s => s.Id == productModel.SubCategoryId))
-            {
-                this.ModelState.AddModelError(nameof(productModel.SubCategoryId), "SubCategory does not exist.");
-            }
+            //if (!this.data.SubCategories.Any(s => s.Id == productModel.SubCategoryId))
+            //{
+            //    this.ModelState.AddModelError(nameof(productModel.SubCategoryId), "SubCategory does not exist.");
+            //}
 
             if (!this.ModelState.IsValid)
             {
-                productModel.Categories = this.categoriesService.GetAll();
+                //productModel.Categories = this.categoriesService.GetAll();
 
-                productModel.SubCategories = this.subCategoriesService.GetAll();
+                //productModel.SubCategories = this.subCategoriesService.GetAll();
 
                 return this.Redirect("/Products/Create");
             }
 
-            // var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            // productModel.UserId = userId;
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
             await this.productsService.CreateAsync(productModel);
 
             return this.RedirectToAction("Index", "Home");
@@ -107,12 +108,11 @@
             var product = await this.productsService.GetByIdAsync(id);
             var user = await this.userManager.FindByIdAsync(product.UserId);
 
-            //if (user.Id != loggedInUserId)
-            //{
+            // if (user.Id != loggedInUserId)
+            // {
             //    // TODO:
             //    return this.Redirect("/");
-            //}
-
+            // }
             var category = await this.categoriesService.GetByIdAsync(product.CategoryId);
 
             var subCategory = await this.subCategoriesService

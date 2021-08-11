@@ -9,6 +9,8 @@
     {
         Task CreateAsync(CreateProductFormModel productModel);
 
+        Task EditAsync(EditProductServiceModel productModel);
+
         ProductQueryServiceModel All(
             string name,
             string searchTerm,
@@ -18,7 +20,7 @@
 
         Task<ProductViewServiceModel> GetByIdAsync(int id);
 
-        void Delete(int productId);
+        Task DeleteById(int productId);
 
         IEnumerable<string> AllProductNames();
 
