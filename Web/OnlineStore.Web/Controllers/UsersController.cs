@@ -19,6 +19,11 @@
             this.productsService = productsService;
         }
 
+        public async Task<IActionResult> Mine()
+        {
+            return null;
+        }
+
         public async Task<IActionResult> Wishlist(int page = 1)
         {
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);

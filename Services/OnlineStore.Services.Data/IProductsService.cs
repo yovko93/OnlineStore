@@ -11,7 +11,7 @@
 
         Task EditAsync(EditProductServiceModel productModel);
 
-        ProductQueryServiceModel All(
+        ProductQueryServiceModel GetAll(
             string name,
             string searchTerm,
             ProductSorting sorting,

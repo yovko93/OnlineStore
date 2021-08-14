@@ -79,7 +79,7 @@
             };
         }
 
-        public ProductQueryServiceModel All(string name, string searchTerm, ProductSorting sorting, int currentPage, int productsPerPage)
+        public ProductQueryServiceModel GetAll(string name, string searchTerm, ProductSorting sorting, int currentPage, int productsPerPage)
         {
             var productsQuery = this.productsRepository
                 .AllAsNoTracking();
@@ -132,5 +132,10 @@
             => this.productsRepository
             .AllAsNoTracking()
             .Any(p => p.Id == productId);
+
+        public async Task EditAsync(EditProductServiceModel productModel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

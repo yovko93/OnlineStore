@@ -80,7 +80,7 @@
 
         public IActionResult All([FromQuery] AllProductsQueryModel query)
         {
-            var queryResult = this.productsService.All(
+            var queryResult = this.productsService.GetAll(
                 query.Name,
                 query.SearchTerm,
                 query.Sorting,
